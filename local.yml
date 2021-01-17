@@ -2,22 +2,12 @@
   connection: local
   become: true
 
+  pre_tasks:
+    - name: update repositories
+      apt:
+        update_cache: yes
+      changed_when: False
+
   tasks:
-  - name: Install packages
-    apt:
-      name:
-        - bleachbit
-        - brave-browser
-        - code
-        - flameshot
-        - fonts-powerline
-        - git
-        - git-flow
-        - htop
-        - mc
-        - meld
-        - nuget
-        - tmux
-        - tree
-        - vim
+    - include: tasks/packages.yml
 
